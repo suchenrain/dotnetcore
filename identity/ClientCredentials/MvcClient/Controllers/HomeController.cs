@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace MvcClient.Controllers
 {
@@ -16,6 +17,11 @@ namespace MvcClient.Controllers
             ViewData["Message"] = "Your application description page.";
 
             return View();
+        }
+        public async Task Logout()
+        {
+            await HttpContext.Authentication.SignOutAsync("Cookies");
+            await HttpContext.Authentication.SignOutAsync("oidc");
         }
 
         public IActionResult Contact()

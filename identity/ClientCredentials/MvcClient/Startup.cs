@@ -48,7 +48,7 @@ namespace MvcClient
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationScheme = "cookies"
+                AuthenticationScheme = "Cookies"
             });
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
