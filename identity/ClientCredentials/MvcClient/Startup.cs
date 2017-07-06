@@ -50,16 +50,37 @@ namespace MvcClient
             {
                 AuthenticationScheme = "Cookies"
             });
+
+            //****OpenID Connect****
+            //app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            //{
+
+            //    AuthenticationScheme = "oidc",
+            //    SignInScheme = "Cookies",
+
+            //    Authority = "http://localhost:5000",
+            //    RequireHttpsMetadata = false,
+
+            //    ClientId = "mvc",
+            //    SaveTokens = true
+            //});
+
+            //****hybrid and client credential****
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
-
                 AuthenticationScheme = "oidc",
                 SignInScheme = "Cookies",
 
                 Authority = "http://localhost:5000",
                 RequireHttpsMetadata = false,
 
-                ClientId = "mvc",
+                ClientId = "hybrid",
+                ClientSecret = "secret",
+
+                ResponseType = "code id_token",
+                Scope = { "api1", "offline_access" },
+
+                GetClaimsFromUserInfoEndpoint = true,
                 SaveTokens = true
             });
             app.UseStaticFiles();

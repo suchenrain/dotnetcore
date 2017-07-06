@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using IdentityServer4;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +38,18 @@ namespace IdentityServer
             //{
             //    await context.Response.WriteAsync("Hello World!");
             //});
-            
+
+            //google
+            app.UseGoogleAuthentication(new GoogleOptions
+            {
+                AuthenticationScheme = "Google",
+                DisplayName = "Google",
+                SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme,
+
+                ClientId= "204396482315-ibiudciftr507e36b6lfrabk9k4il6sm.apps.googleusercontent.com",
+                ClientSecret= "TW0Lp_KVKfoxZsN9ILuk2Atu"
+            });
+
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
