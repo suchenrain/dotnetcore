@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 
-
 namespace MvcClient
 {
     public class Startup
@@ -54,7 +53,6 @@ namespace MvcClient
             //****OpenID Connect****
             //app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             //{
-
             //    AuthenticationScheme = "oidc",
             //    SignInScheme = "Cookies",
 

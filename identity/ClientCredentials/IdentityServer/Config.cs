@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
-using IdentityServer4;
+using System.Collections.Generic;
 
 public class Config
 {
@@ -12,14 +12,11 @@ public class Config
         {
             new ApiResource("api1","My Api")
         };
-
     }
-
 
     //client want to access resources
     public static IEnumerable<Client> GetClients()
     {
-
         return new List<Client>
                 {
                     new Client
@@ -107,10 +104,7 @@ public class Config
                             "api1"
                         }
                     }
-
-
                 };
-
     }
 
     public static List<TestUser> GetUsers()
@@ -140,5 +134,4 @@ public class Config
             new IdentityResources.Profile()
         };
     }
-
 }
