@@ -114,7 +114,6 @@ namespace IdentityServerWithEF
                         }
                     }
             };
-
         }
 
         public static List<TestUser> GetUsers()

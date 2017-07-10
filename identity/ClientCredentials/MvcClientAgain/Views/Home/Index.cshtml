@@ -1,0 +1,9 @@
+﻿<p>
+    @await ViewContext.HttpContext.Authentication.GetTokenAsync("access_token")
+</p>
+
+Or for Refresh token call this
+
+<p>
+    @await ViewContext.HttpContext.Authentication.GetTokenAsync("refresh_token")
+</p>
