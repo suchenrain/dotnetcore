@@ -1,0 +1,1338 @@
+2017-07-13T11:13:06.8978885+08:00  [INF] Executed DbCommand (1,356ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [EA.WebApp]; (6438bdd5)
+2017-07-13T11:13:07.7416956+08:00  [INF] Executed DbCommand (788ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [EA.WebApp] SET READ_COMMITTED_SNAPSHOT ON;'); (6438bdd5)
+2017-07-13T11:13:08.1480146+08:00  [INF] Executed DbCommand (59ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+); (6438bdd5)
+2017-07-13T11:13:08.3199105+08:00  [INF] Executed DbCommand (149ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory'); (6438bdd5)
+2017-07-13T11:13:08.3199105+08:00  [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId]; (6438bdd5)
+2017-07-13T11:13:08.9803185+08:00  [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [ConcurrencyStamp] nvarchar(max),
+    [Description] nvarchar(max),
+    [Name] nvarchar(256),
+    [NormalizedName] nvarchar(256),
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+); (6438bdd5)
+2017-07-13T11:13:08.9959452+08:00  [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AspNetUsers] (
+    [Id] nvarchar(450) NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    [ConcurrencyStamp] nvarchar(max),
+    [Configuration] nvarchar(max),
+    [Email] nvarchar(256),
+    [EmailConfirmed] bit NOT NULL,
+    [FullName] nvarchar(max),
+    [IsEnabled] bit NOT NULL,
+    [JobTitle] nvarchar(max),
+    [LockoutEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset,
+    [NormalizedEmail] nvarchar(256),
+    [NormalizedUserName] nvarchar(256),
+    [PasswordHash] nvarchar(max),
+    [PhoneNumber] nvarchar(max),
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [SecurityStamp] nvarchar(max),
+    [TwoFactorEnabled] bit NOT NULL,
+    [UserName] nvarchar(256),
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+); (6438bdd5)
+2017-07-13T11:13:09.0272007+08:00  [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AppCustomers] (
+    [Id] int NOT NULL IDENTITY,
+    [Address] nvarchar(max),
+    [City] nvarchar(50),
+    [DateCreated] datetime2 NOT NULL,
+    [DateModified] datetime2 NOT NULL,
+    [Email] nvarchar(100),
+    [Gender] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [PhoneNumber] varchar(30),
+    CONSTRAINT [PK_AppCustomers] PRIMARY KEY ([Id])
+); (6438bdd5)
+2017-07-13T11:13:09.0428246+08:00  [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AppProductCategories] (
+    [Id] int NOT NULL IDENTITY,
+    [DateCreated] datetime2 NOT NULL,
+    [DateModified] datetime2 NOT NULL,
+    [Description] nvarchar(500),
+    [Icon] nvarchar(max),
+    [Name] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_AppProductCategories] PRIMARY KEY ([Id])
+); (6438bdd5)
+2017-07-13T11:13:09.0584523+08:00  [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AspNetUserTokens] (
+    [UserId] nvarchar(450) NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max),
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name])
+); (6438bdd5)
+2017-07-13T11:13:09.0740776+08:00  [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [OpenIddictApplications] (
+    [Id] nvarchar(450) NOT NULL,
+    [ClientId] nvarchar(450),
+    [ClientSecret] nvarchar(max),
+    [DisplayName] nvarchar(max),
+    [LogoutRedirectUri] nvarchar(max),
+    [RedirectUri] nvarchar(max),
+    [Type] nvarchar(max),
+    CONSTRAINT [PK_OpenIddictApplications] PRIMARY KEY ([Id])
+); (6438bdd5)
+2017-07-13T11:13:09.0896766+08:00  [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [OpenIddictScopes] (
+    [Id] nvarchar(450) NOT NULL,
+    [Description] nvarchar(max),
+    CONSTRAINT [PK_OpenIddictScopes] PRIMARY KEY ([Id])
+); (6438bdd5)
+2017-07-13T11:13:09.0896766+08:00  [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [ClaimType] nvarchar(max),
+    [ClaimValue] nvarchar(max),
+    [RoleId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+); (6438bdd5)
+2017-07-13T11:13:09.1053322+08:00  [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [ClaimType] nvarchar(max),
+    [ClaimValue] nvarchar(max),
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+); (6438bdd5)
+2017-07-13T11:13:09.1208974+08:00  [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max),
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+); (6438bdd5)
+2017-07-13T11:13:09.1522115+08:00  [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AspNetUserRoles] (
+    [UserId] nvarchar(450) NOT NULL,
+    [RoleId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+); (6438bdd5)
+2017-07-13T11:13:09.1678378+08:00  [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AppOrders] (
+    [Id] int NOT NULL IDENTITY,
+    [CashierId] nvarchar(450),
+    [Comments] nvarchar(500),
+    [CustomerId] int NOT NULL,
+    [DateCreated] datetime2 NOT NULL,
+    [DateModified] datetime2 NOT NULL,
+    [Discount] decimal(18, 2) NOT NULL,
+    CONSTRAINT [PK_AppOrders] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AppOrders_AspNetUsers_CashierId] FOREIGN KEY ([CashierId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_AppOrders_AppCustomers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [AppCustomers] ([Id]) ON DELETE CASCADE
+); (6438bdd5)
+2017-07-13T11:13:09.2303444+08:00  [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AppProducts] (
+    [Id] int NOT NULL IDENTITY,
+    [BuyingPrice] decimal(18, 2) NOT NULL,
+    [DateCreated] datetime2 NOT NULL,
+    [DateModified] datetime2 NOT NULL,
+    [Description] nvarchar(500),
+    [Icon] varchar(256),
+    [IsActive] bit NOT NULL,
+    [IsDiscontinued] bit NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [ParentId] int,
+    [ProductCategoryId] int NOT NULL,
+    [SellingPrice] decimal(18, 2) NOT NULL,
+    [UnitsInStock] int NOT NULL,
+    CONSTRAINT [PK_AppProducts] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AppProducts_AppProducts_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [AppProducts] ([Id]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_AppProducts_AppProductCategories_ProductCategoryId] FOREIGN KEY ([ProductCategoryId]) REFERENCES [AppProductCategories] ([Id]) ON DELETE CASCADE
+); (6438bdd5)
+2017-07-13T11:13:09.2459707+08:00  [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [OpenIddictAuthorizations] (
+    [Id] nvarchar(450) NOT NULL,
+    [ApplicationId] nvarchar(450),
+    [Scope] nvarchar(max),
+    [Subject] nvarchar(max),
+    CONSTRAINT [PK_OpenIddictAuthorizations] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_OpenIddictAuthorizations_OpenIddictApplications_ApplicationId] FOREIGN KEY ([ApplicationId]) REFERENCES [OpenIddictApplications] ([Id]) ON DELETE NO ACTION
+); (6438bdd5)
+2017-07-13T11:13:09.3397318+08:00  [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [AppOrderDetails] (
+    [Id] int NOT NULL IDENTITY,
+    [Discount] decimal(18, 2) NOT NULL,
+    [OrderId] int NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18, 2) NOT NULL,
+    CONSTRAINT [PK_AppOrderDetails] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AppOrderDetails_AppOrders_OrderId] FOREIGN KEY ([OrderId]) REFERENCES [AppOrders] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AppOrderDetails_AppProducts_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [AppProducts] ([Id]) ON DELETE CASCADE
+); (6438bdd5)
+2017-07-13T11:13:09.3553581+08:00  [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [OpenIddictTokens] (
+    [Id] nvarchar(450) NOT NULL,
+    [ApplicationId] nvarchar(450),
+    [AuthorizationId] nvarchar(450),
+    [Subject] nvarchar(max),
+    [Type] nvarchar(max),
+    CONSTRAINT [PK_OpenIddictTokens] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_OpenIddictTokens_OpenIddictApplications_ApplicationId] FOREIGN KEY ([ApplicationId]) REFERENCES [OpenIddictApplications] ([Id]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_OpenIddictTokens_OpenIddictAuthorizations_AuthorizationId] FOREIGN KEY ([AuthorizationId]) REFERENCES [OpenIddictAuthorizations] ([Id]) ON DELETE NO ACTION
+); (6438bdd5)
+2017-07-13T11:13:09.3553581+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL; (6438bdd5)
+2017-07-13T11:13:09.4022066+08:00  [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]); (6438bdd5)
+2017-07-13T11:13:09.4022066+08:00  [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL; (6438bdd5)
+2017-07-13T11:13:09.4334919+08:00  [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppCustomers_Name] ON [AppCustomers] ([Name]); (6438bdd5)
+2017-07-13T11:13:09.4334919+08:00  [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppOrders_CashierId] ON [AppOrders] ([CashierId]); (6438bdd5)
+2017-07-13T11:13:09.4490557+08:00  [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppOrders_CustomerId] ON [AppOrders] ([CustomerId]); (6438bdd5)
+2017-07-13T11:13:09.4647191+08:00  [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppOrderDetails_OrderId] ON [AppOrderDetails] ([OrderId]); (6438bdd5)
+2017-07-13T11:13:09.4647191+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppOrderDetails_ProductId] ON [AppOrderDetails] ([ProductId]); (6438bdd5)
+2017-07-13T11:13:09.4647191+08:00  [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppProducts_Name] ON [AppProducts] ([Name]); (6438bdd5)
+2017-07-13T11:13:09.4803708+08:00  [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppProducts_ParentId] ON [AppProducts] ([ParentId]); (6438bdd5)
+2017-07-13T11:13:09.4803708+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AppProducts_ProductCategoryId] ON [AppProducts] ([ProductCategoryId]); (6438bdd5)
+2017-07-13T11:13:09.4803708+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]); (6438bdd5)
+2017-07-13T11:13:09.5585046+08:00  [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]); (6438bdd5)
+2017-07-13T11:13:09.5585046+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]); (6438bdd5)
+2017-07-13T11:13:09.5585046+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]); (6438bdd5)
+2017-07-13T11:13:09.5585046+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_OpenIddictApplications_ClientId] ON [OpenIddictApplications] ([ClientId]) WHERE [ClientId] IS NOT NULL; (6438bdd5)
+2017-07-13T11:13:09.5741299+08:00  [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_OpenIddictAuthorizations_ApplicationId] ON [OpenIddictAuthorizations] ([ApplicationId]); (6438bdd5)
+2017-07-13T11:13:09.5741299+08:00  [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_OpenIddictTokens_ApplicationId] ON [OpenIddictTokens] ([ApplicationId]); (6438bdd5)
+2017-07-13T11:13:09.5741299+08:00  [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_OpenIddictTokens_AuthorizationId] ON [OpenIddictTokens] ([AuthorizationId]); (6438bdd5)
+2017-07-13T11:13:09.6053854+08:00  [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20170531045241_Initial', N'1.1.2'); (6438bdd5)
+2017-07-13T11:13:10.8242638+08:00  [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END (6438bdd5)
+2017-07-13T11:13:11.2618090+08:00  [INF] Executed DbCommand (75ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.3399423+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.6212228+08:00  [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Description], [Name], [NormalizedName])
+VALUES (@p0, @p1, @p2, @p3, @p4); (6438bdd5)
+2017-07-13T11:13:11.6680733+08:00  [INF] Executed DbCommand (20ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.7931148+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.8399976+08:00  [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450), @p7='?' (Size = 450), @p3='?' (Size = 4000), @p8='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetRoleClaims] ([ClaimType], [ClaimValue], [RoleId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetRoleClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+
+UPDATE [AspNetRoles] SET [ConcurrencyStamp] = @p3, [Description] = @p4, [Name] = @p5, [NormalizedName] = @p6
+WHERE [Id] = @p7 AND [ConcurrencyStamp] = @p8;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:13:11.8868745+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.8868745+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450), @p7='?' (Size = 450), @p3='?' (Size = 4000), @p8='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetRoleClaims] ([ClaimType], [ClaimValue], [RoleId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetRoleClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+
+UPDATE [AspNetRoles] SET [ConcurrencyStamp] = @p3, [Description] = @p4, [Name] = @p5, [NormalizedName] = @p6
+WHERE [Id] = @p7 AND [ConcurrencyStamp] = @p8;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:13:11.8868745+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.8868745+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450), @p7='?' (Size = 450), @p3='?' (Size = 4000), @p8='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetRoleClaims] ([ClaimType], [ClaimValue], [RoleId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetRoleClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+
+UPDATE [AspNetRoles] SET [ConcurrencyStamp] = @p3, [Description] = @p4, [Name] = @p5, [NormalizedName] = @p6
+WHERE [Id] = @p7 AND [ConcurrencyStamp] = @p8;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:13:11.9025007+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.9025007+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450), @p7='?' (Size = 450), @p3='?' (Size = 4000), @p8='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetRoleClaims] ([ClaimType], [ClaimValue], [RoleId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetRoleClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+
+UPDATE [AspNetRoles] SET [ConcurrencyStamp] = @p3, [Description] = @p4, [Name] = @p5, [NormalizedName] = @p6
+WHERE [Id] = @p7 AND [ConcurrencyStamp] = @p8;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:13:11.9025007+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.9025007+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450), @p7='?' (Size = 450), @p3='?' (Size = 4000), @p8='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetRoleClaims] ([ClaimType], [ClaimValue], [RoleId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetRoleClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+
+UPDATE [AspNetRoles] SET [ConcurrencyStamp] = @p3, [Description] = @p4, [Name] = @p5, [NormalizedName] = @p6
+WHERE [Id] = @p7 AND [ConcurrencyStamp] = @p8;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:13:11.9180997+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.9180997+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:11.9337562+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Description], [Name], [NormalizedName])
+VALUES (@p0, @p1, @p2, @p3, @p4); (6438bdd5)
+2017-07-13T11:13:11.9337562+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:13:12.0587670+08:00  [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:13:12.0899941+08:00  [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:13:12.1369033+08:00  [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 450), @p1='?', @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?', @p6='?' (Size = 4000), @p7='?', @p8='?' (Size = 4000), @p9='?', @p10='?', @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?', @p16='?' (Size = 4000), @p17='?', @p18='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Configuration], [Email], [EmailConfirmed], [FullName], [IsEnabled], [JobTitle], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18); (6438bdd5)
+2017-07-13T11:13:12.1525276+08:00  [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:13:12.1838984+08:00  [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0 (6438bdd5)
+2017-07-13T11:13:12.2306624+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (Size = 450), @__get_Item_1='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[UserId], [e].[RoleId]
+FROM [AspNetUserRoles] AS [e]
+WHERE ([e].[UserId] = @__get_Item_0) AND ([e].[RoleId] = @__get_Item_1) (6438bdd5)
+2017-07-13T11:13:12.2462907+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0 (6438bdd5)
+2017-07-13T11:13:12.2619170+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:13:12.2775149+08:00  [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:13:12.3114708+08:00  [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p20='?' (Size = 450), @p2='?', @p3='?' (Size = 4000), @p21='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 256), @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?' (Size = 4000), @p10='?', @p11='?', @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?', @p17='?' (Size = 4000), @p18='?', @p19='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Configuration] = @p4, [Email] = @p5, [EmailConfirmed] = @p6, [FullName] = @p7, [IsEnabled] = @p8, [JobTitle] = @p9, [LockoutEnabled] = @p10, [LockoutEnd] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [SecurityStamp] = @p17, [TwoFactorEnabled] = @p18, [UserName] = @p19
+WHERE [Id] = @p20 AND [ConcurrencyStamp] = @p21;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:13:12.3271220+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:13:12.3271220+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:13:12.3427219+08:00  [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 450), @p1='?', @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?', @p6='?' (Size = 4000), @p7='?', @p8='?' (Size = 4000), @p9='?', @p10='?', @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?', @p16='?' (Size = 4000), @p17='?', @p18='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Configuration], [Email], [EmailConfirmed], [FullName], [IsEnabled], [JobTitle], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18); (6438bdd5)
+2017-07-13T11:13:12.3427219+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:13:12.3427219+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0 (6438bdd5)
+2017-07-13T11:13:12.3583833+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (Size = 450), @__get_Item_1='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[UserId], [e].[RoleId]
+FROM [AspNetUserRoles] AS [e]
+WHERE ([e].[UserId] = @__get_Item_0) AND ([e].[RoleId] = @__get_Item_1) (6438bdd5)
+2017-07-13T11:13:12.3583833+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0 (6438bdd5)
+2017-07-13T11:13:12.3740033+08:00  [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:13:12.3740033+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:13:12.3896296+08:00  [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p20='?' (Size = 450), @p2='?', @p3='?' (Size = 4000), @p21='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 256), @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?' (Size = 4000), @p10='?', @p11='?', @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?', @p17='?' (Size = 4000), @p18='?', @p19='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Configuration] = @p4, [Email] = @p5, [EmailConfirmed] = @p6, [FullName] = @p7, [IsEnabled] = @p8, [JobTitle] = @p9, [LockoutEnabled] = @p10, [LockoutEnd] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [SecurityStamp] = @p17, [TwoFactorEnabled] = @p18, [UserName] = @p19
+WHERE [Id] = @p20 AND [ConcurrencyStamp] = @p21;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:13:12.4052578+08:00  [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AppCustomers] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END (6438bdd5)
+2017-07-13T11:13:12.4208851+08:00  [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AppProductCategories] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END (6438bdd5)
+2017-07-13T11:13:12.4677634+08:00  [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Configuration], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[IsEnabled], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a] (6438bdd5)
+2017-07-13T11:13:12.4677634+08:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Configuration], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[IsEnabled], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a] (6438bdd5)
+2017-07-13T11:13:12.8740590+08:00  [INF] Executed DbCommand (80ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 50), @p2='?', @p3='?', @p4='?' (Size = 100), @p5='?', @p6='?' (Size = 100), @p7='?' (Size = 30), @p8='?' (Size = 4000), @p9='?' (Size = 50), @p10='?', @p11='?', @p12='?' (Size = 100), @p13='?', @p14='?' (Size = 100), @p15='?' (Size = 30), @p16='?' (Size = 4000), @p17='?' (Size = 50), @p18='?', @p19='?', @p20='?' (Size = 100), @p21='?', @p22='?' (Size = 100), @p23='?' (Size = 30), @p24='?' (Size = 4000), @p25='?' (Size = 50), @p26='?', @p27='?', @p28='?' (Size = 100), @p29='?', @p30='?' (Size = 100), @p31='?' (Size = 30), @p32='?', @p33='?', @p34='?' (Size = 500), @p35='?' (Size = 4000), @p36='?' (Size = 100)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @toInsert0 TABLE ([Address] nvarchar(max), [City] nvarchar(50), [DateCreated] datetime2, [DateModified] datetime2, [Email] nvarchar(100), [Gender] int, [Name] nvarchar(100), [PhoneNumber] varchar(30), [_Position] [int]);
+INSERT INTO @toInsert0
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, 0),
+(@p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, 1),
+(@p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, 2),
+(@p24, @p25, @p26, @p27, @p28, @p29, @p30, @p31, 3);
+
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [AppCustomers] USING @toInsert0 AS i ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Address], [City], [DateCreated], [DateModified], [Email], [Gender], [Name], [PhoneNumber])
+VALUES (i.[Address], i.[City], i.[DateCreated], i.[DateModified], i.[Email], i.[Gender], i.[Name], i.[PhoneNumber])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [AppCustomers] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+
+INSERT INTO [AppProductCategories] ([DateCreated], [DateModified], [Description], [Icon], [Name])
+VALUES (@p32, @p33, @p34, @p35, @p36);
+SELECT [Id]
+FROM [AppProductCategories]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity(); (6438bdd5)
+2017-07-13T11:13:13.0303228+08:00  [INF] Executed DbCommand (134ms) [Parameters=[@p37='?' (Size = 450), @p38='?' (Size = 500), @p39='?', @p40='?', @p41='?', @p42='?', @p43='?' (Size = 450), @p44='?' (Size = 500), @p45='?', @p46='?', @p47='?', @p48='?', @p49='?', @p50='?', @p51='?', @p52='?' (Size = 500), @p53='?' (Size = 256), @p54='?', @p55='?', @p56='?' (Size = 100), @p57='?', @p58='?', @p59='?', @p60='?', @p61='?', @p62='?', @p63='?', @p64='?' (Size = 500), @p65='?' (Size = 256), @p66='?', @p67='?', @p68='?' (Size = 100), @p69='?', @p70='?', @p71='?', @p72='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @toInsert0 TABLE ([CashierId] nvarchar(450), [Comments] nvarchar(500), [CustomerId] int, [DateCreated] datetime2, [DateModified] datetime2, [Discount] decimal(18, 2), [_Position] [int]);
+INSERT INTO @toInsert0
+VALUES (@p37, @p38, @p39, @p40, @p41, @p42, 0),
+(@p43, @p44, @p45, @p46, @p47, @p48, 1);
+
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [AppOrders] USING @toInsert0 AS i ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([CashierId], [Comments], [CustomerId], [DateCreated], [DateModified], [Discount])
+VALUES (i.[CashierId], i.[Comments], i.[CustomerId], i.[DateCreated], i.[DateModified], i.[Discount])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [AppOrders] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+
+DECLARE @toInsert2 TABLE ([BuyingPrice] decimal(18, 2), [DateCreated] datetime2, [DateModified] datetime2, [Description] nvarchar(500), [Icon] varchar(256), [IsActive] bit, [IsDiscontinued] bit, [Name] nvarchar(100), [ParentId] int, [ProductCategoryId] int, [SellingPrice] decimal(18, 2), [UnitsInStock] int, [_Position] [int]);
+INSERT INTO @toInsert2
+VALUES (@p49, @p50, @p51, @p52, @p53, @p54, @p55, @p56, @p57, @p58, @p59, @p60, 0),
+(@p61, @p62, @p63, @p64, @p65, @p66, @p67, @p68, @p69, @p70, @p71, @p72, 1);
+
+DECLARE @inserted2 TABLE ([Id] int, [_Position] [int]);
+MERGE [AppProducts] USING @toInsert2 AS i ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([BuyingPrice], [DateCreated], [DateModified], [Description], [Icon], [IsActive], [IsDiscontinued], [Name], [ParentId], [ProductCategoryId], [SellingPrice], [UnitsInStock])
+VALUES (i.[BuyingPrice], i.[DateCreated], i.[DateModified], i.[Description], i.[Icon], i.[IsActive], i.[IsDiscontinued], i.[Name], i.[ParentId], i.[ProductCategoryId], i.[SellingPrice], i.[UnitsInStock])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted2;
+
+SELECT [t].[Id] FROM [AppProducts] t
+INNER JOIN @inserted2 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position]; (6438bdd5)
+2017-07-13T11:13:13.0928284+08:00  [INF] Executed DbCommand (54ms) [Parameters=[@p73='?', @p74='?', @p75='?', @p76='?', @p77='?', @p78='?', @p79='?', @p80='?', @p81='?', @p82='?', @p83='?', @p84='?', @p85='?', @p86='?', @p87='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @toInsert0 TABLE ([Discount] decimal(18, 2), [OrderId] int, [ProductId] int, [Quantity] int, [UnitPrice] decimal(18, 2), [_Position] [int]);
+INSERT INTO @toInsert0
+VALUES (@p73, @p74, @p75, @p76, @p77, 0),
+(@p78, @p79, @p80, @p81, @p82, 1),
+(@p83, @p84, @p85, @p86, @p87, 2);
+
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [AppOrderDetails] USING @toInsert0 AS i ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Discount], [OrderId], [ProductId], [Quantity], [UnitPrice])
+VALUES (i.[Discount], i.[OrderId], i.[ProductId], i.[Quantity], i.[UnitPrice])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [AppOrderDetails] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position]; (6438bdd5)
+2017-07-13T11:13:13.2490956+08:00  [WRN] Disabling the transport security requirement is not recommended in production. Consider setting 'OpenIdConnectServerOptions.AllowInsecureHttp' to 'false' to prevent the OpenID Connect server middleware from serving non-HTTPS requests. (4405708c)
+2017-07-13T11:13:39.2242391+08:00 0HL69JKK7PD79 [INF] Request starting HTTP/1.1 GET http://localhost:5000/   (e5be5b71)
+2017-07-13T11:13:39.4372452+08:00 0HL69JKK7PD79 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:13:40.9156128+08:00 0HL69JKK7PD79 [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:13:47.4632870+08:00 0HL69JKK7PD79 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:13:48.9815590+08:00 0HL69JKK7PD79 [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 8210.6158ms (afa2e885)
+2017-07-13T11:13:49.0115637+08:00 0HL69JKK7PD7A [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.css?v=KmyyFY1Yy5FUtGZXb8gtv4yT0hNXpk4D4_5Cx1n6iPQ   (e5be5b71)
+2017-07-13T11:13:49.0115637+08:00 0HL69JKK7PD7B [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.js?v=rqAG_rk8MejUId1XgTiyQIiNN6_mH3eJFhpvseTi2lA   (e5be5b71)
+2017-07-13T11:13:49.0155642+08:00 0HL69JKK7PD7C [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js?v=cxQdSenCvXV1SHw1tjzMYcPGBKoX8r4rHdXdVjo852k   (e5be5b71)
+2017-07-13T11:13:49.0315662+08:00 0HL69JKK7PD79 [INF] Request finished in 9890.1919ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:13:49.0505705+08:00 0HL69JKK7PD7C [INF] Sending file. Request path: '"/dist/main-client.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js"' (27b0a520)
+2017-07-13T11:13:49.0505705+08:00 0HL69JKK7PD7A [INF] Sending file. Request path: '"/dist/vendor.css"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.css"' (27b0a520)
+2017-07-13T11:13:49.0525708+08:00 0HL69JKK7PD7B [INF] Sending file. Request path: '"/dist/vendor.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.js"' (27b0a520)
+2017-07-13T11:13:49.1855923+08:00 0HL69JKK7PD7A [INF] Request finished in 174.7494ms 200 text/css (15c52c40)
+2017-07-13T11:13:49.4076289+08:00 0HL69JKK7PD7C [INF] Request finished in 386.7927ms 200 application/javascript (15c52c40)
+2017-07-13T11:13:49.8206942+08:00 0HL69JKK7PD7B [INF] Request finished in 809.4568ms 200 application/javascript (15c52c40)
+2017-07-13T11:15:08.8045825+08:00 0HL69JKK7PD7D [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 142 (e5be5b71)
+2017-07-13T11:15:08.8065831+08:00 0HL69JKK7PD7D [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:15:09.5426396+08:00 0HL69JKK7PD7D [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}". (ebc01284)
+2017-07-13T11:15:09.6106759+08:00 0HL69JKK7PD7D [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2017-07-13T11:15:09.6126760+08:00 0HL69JKK7PD7D [INF] The token request was successfully validated. (d7e51e65)
+2017-07-13T11:15:09.6436785+08:00 0HL69JKK7PD7D [DBG] The default token request handling was skipped from user code. (72afae05)
+2017-07-13T11:15:09.8807063+08:00 0HL69JKK7PD7D [INF] Executing action method "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" with arguments (["{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}"]) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:15:09.9847200+08:00 0HL69JKK7PD7D [INF] Executed DbCommand (54ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:15:10.0577283+08:00 0HL69JKK7PD7D [INF] Executed DbCommand (33ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:15:10.2534572+08:00 0HL69JKK7PD7D [WRN] Invalid password for user "38104962-e7ed-4112-9f76-21da31ac9015". (c2dce6c7)
+2017-07-13T11:15:10.3084714+08:00 0HL69JKK7PD7D [INF] Executed DbCommand (32ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:15:10.3184756+08:00 0HL69JKK7PD7D [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:15:10.3593558+08:00 0HL69JKK7PD7D [INF] Executed DbCommand (19ms) [Parameters=[@p18='?' (Size = 450), @p0='?', @p1='?' (Size = 4000), @p19='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?', @p5='?' (Size = 4000), @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 4000), @p16='?', @p17='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Configuration] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FullName] = @p5, [IsEnabled] = @p6, [JobTitle] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:15:10.4458517+08:00 0HL69JKK7PD7D [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:15:10.6632463+08:00 0HL69JKK7PD7D [INF] Executed action "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" in 980.3942ms (afa2e885)
+2017-07-13T11:15:10.7308999+08:00 0HL69JKK7PD7D [INF] Request finished in 1871.0269ms 400 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:15:29.6640343+08:00 0HL69JKK7PD7E [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 157 (e5be5b71)
+2017-07-13T11:15:29.6650359+08:00 0HL69JKK7PD7E [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:15:29.6670355+08:00 0HL69JKK7PD7E [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}". (ebc01284)
+2017-07-13T11:15:29.6760367+08:00 0HL69JKK7PD7E [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2017-07-13T11:15:29.6780369+08:00 0HL69JKK7PD7E [INF] The token request was successfully validated. (d7e51e65)
+2017-07-13T11:15:29.6790086+08:00 0HL69JKK7PD7E [DBG] The default token request handling was skipped from user code. (72afae05)
+2017-07-13T11:15:29.6860385+08:00 0HL69JKK7PD7E [INF] Executing action method "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" with arguments (["{
+  \"username\": \"admin@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}"]) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:15:29.7120406+08:00 0HL69JKK7PD7E [INF] Executed DbCommand (19ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:15:29.7590458+08:00 0HL69JKK7PD7E [WRN] Invalid password for user "38104962-e7ed-4112-9f76-21da31ac9015". (c2dce6c7)
+2017-07-13T11:15:29.7780195+08:00 0HL69JKK7PD7E [INF] Executed DbCommand (11ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:15:29.8320551+08:00 0HL69JKK7PD7E [INF] Executed DbCommand (41ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:15:29.8430555+08:00 0HL69JKK7PD7E [INF] Executed DbCommand (3ms) [Parameters=[@p18='?' (Size = 450), @p0='?', @p1='?' (Size = 4000), @p19='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?', @p5='?' (Size = 4000), @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 4000), @p16='?', @p17='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Configuration] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FullName] = @p5, [IsEnabled] = @p6, [JobTitle] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:15:29.8480290+08:00 0HL69JKK7PD7E [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:15:29.8540583+08:00 0HL69JKK7PD7E [INF] Executed action "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" in 167.3828ms (afa2e885)
+2017-07-13T11:15:29.8560570+08:00 0HL69JKK7PD7E [INF] Request finished in 192.5729ms 400 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:15:35.7263578+08:00 0HL69JKK7PD7F [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 157 (e5be5b71)
+2017-07-13T11:15:35.7263578+08:00 0HL69JKK7PD7F [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:15:35.7273584+08:00 0HL69JKK7PD7F [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}". (ebc01284)
+2017-07-13T11:15:35.7283580+08:00 0HL69JKK7PD7F [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2017-07-13T11:15:35.7333281+08:00 0HL69JKK7PD7F [INF] The token request was successfully validated. (d7e51e65)
+2017-07-13T11:15:35.7333281+08:00 0HL69JKK7PD7F [DBG] The default token request handling was skipped from user code. (72afae05)
+2017-07-13T11:15:35.7383583+08:00 0HL69JKK7PD7F [INF] Executing action method "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" with arguments (["{
+  \"username\": \"admin@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}"]) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:15:35.7663346+08:00 0HL69JKK7PD7F [INF] Executed DbCommand (22ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:15:35.8134708+08:00 0HL69JKK7PD7F [WRN] Invalid password for user "38104962-e7ed-4112-9f76-21da31ac9015". (c2dce6c7)
+2017-07-13T11:15:35.8250340+08:00 0HL69JKK7PD7F [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:15:35.8295698+08:00 0HL69JKK7PD7F [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:15:35.8410021+08:00 0HL69JKK7PD7F [INF] Executed DbCommand (7ms) [Parameters=[@p18='?' (Size = 450), @p0='?', @p1='?' (Size = 4000), @p19='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?', @p5='?' (Size = 4000), @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 4000), @p16='?', @p17='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Configuration] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FullName] = @p5, [IsEnabled] = @p6, [JobTitle] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:15:35.8440033+08:00 0HL69JKK7PD7F [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:15:35.8480012+08:00 0HL69JKK7PD7F [INF] Executed action "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" in 110.9336ms (afa2e885)
+2017-07-13T11:15:35.8510019+08:00 0HL69JKK7PD7F [INF] Request finished in 124.4551ms 400 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:16:12.1105669+08:00 0HL69JKK7PD7G [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 157 (e5be5b71)
+2017-07-13T11:16:12.1165679+08:00 0HL69JKK7PD7G [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:16:12.1175684+08:00 0HL69JKK7PD7G [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}". (ebc01284)
+2017-07-13T11:16:12.1225410+08:00 0HL69JKK7PD7G [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2017-07-13T11:16:12.1235689+08:00 0HL69JKK7PD7G [INF] The token request was successfully validated. (d7e51e65)
+2017-07-13T11:16:12.1255407+08:00 0HL69JKK7PD7G [DBG] The default token request handling was skipped from user code. (72afae05)
+2017-07-13T11:16:12.1265687+08:00 0HL69JKK7PD7G [INF] Executing action method "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" with arguments (["{
+  \"username\": \"admin@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}"]) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:16:12.1444382+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (13ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:16:12.2103912+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:16:12.2183924+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:16:12.2253631+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (2ms) [Parameters=[@p18='?' (Size = 450), @p0='?', @p1='?' (Size = 4000), @p19='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?', @p5='?' (Size = 4000), @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 4000), @p16='?', @p17='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Configuration] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FullName] = @p5, [IsEnabled] = @p6, [JobTitle] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+SELECT @@ROWCOUNT; (6438bdd5)
+2017-07-13T11:16:12.6724483+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (17ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0 (6438bdd5)
+2017-07-13T11:16:12.6824452+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:16:12.7604543+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (10ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0 (6438bdd5)
+2017-07-13T11:16:12.8374649+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0 (6438bdd5)
+2017-07-13T11:16:12.8784809+08:00 0HL69JKK7PD7G [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2017-07-13T11:16:12.9894859+08:00 0HL69JKK7PD7G [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:16:12.9904860+08:00 0HL69JKK7PD7G [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:16:12.9914421+08:00 0HL69JKK7PD7G [DBG] '"fullname"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:16:12.9914421+08:00 0HL69JKK7PD7G [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:16:13.5688469+08:00 0HL69JKK7PD7G [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [OpenIddictTokens] ([Id], [ApplicationId], [AuthorizationId], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4); (6438bdd5)
+2017-07-13T11:16:13.6238249+08:00 0HL69JKK7PD7G [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2017-07-13T11:16:13.9108865+08:00 0HL69JKK7PD7G [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3599,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2017-07-13T11:16:13.9418895+08:00 0HL69JKK7PD7G [INF] AuthenticationScheme: "ASOS" signed in. (c66dd7e7)
+2017-07-13T11:16:13.9428896+08:00 0HL69JKK7PD7G [INF] Executed action "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" in 1816.7667ms (afa2e885)
+2017-07-13T11:16:13.9548920+08:00 0HL69JKK7PD7G [INF] Request finished in 1837.1443ms 200 application/json;charset=UTF-8 (15c52c40)
+2017-07-13T11:16:14.6549730+08:00 0HL69JKK7PD7H [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/e10af218b941826ea360d7554688d721.png   (e5be5b71)
+2017-07-13T11:16:14.6559731+08:00 0HL69JKK7PD7H [INF] Sending file. Request path: '"/dist/e10af218b941826ea360d7554688d721.png"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\e10af218b941826ea360d7554688d721.png"' (27b0a520)
+2017-07-13T11:16:14.6679740+08:00 0HL69JKK7PD7H [INF] Request finished in 7.2165ms 200 image/png (15c52c40)
+2017-07-13T11:17:01.7551334+08:00 0HL69JKK7PD7I [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me   (e5be5b71)
+2017-07-13T11:17:01.7751639+08:00 0HL69JKK7PD7J [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/roles   (e5be5b71)
+2017-07-13T11:17:01.8581461+08:00 0HL69JKK7PD7I [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:17:01.8601741+08:00 0HL69JKK7PD7J [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:17:01.9501842+08:00 0HL69JKK7PD7J [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:01.9511843+08:00 0HL69JKK7PD7I [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:01.9571853+08:00 0HL69JKK7PD7I [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:17:01.9581849+08:00 0HL69JKK7PD7J [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:02.0371663+08:00 0HL69JKK7PD7J [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetRoles (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:17:02.1582097+08:00 0HL69JKK7PD7I [INF] Executed DbCommand (48ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:17:02.1742115+08:00 0HL69JKK7PD7I [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:02.1892122+08:00 0HL69JKK7PD7I [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:02.3647915+08:00 0HL69JKK7PD7I [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[Id] = @__userId_0
+ORDER BY [u].[Id] (6438bdd5)
+2017-07-13T11:17:02.3804166+08:00 0HL69JKK7PD7J [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+ORDER BY [r].[Name], [r].[Id] (6438bdd5)
+2017-07-13T11:17:02.4277242+08:00 0HL69JKK7PD7J [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a0].[UserId], [a0].[RoleId]
+FROM [AspNetUserRoles] AS [a0]
+INNER JOIN (
+    SELECT DISTINCT [r].[Name], [r].[Id]
+    FROM [AspNetRoles] AS [r]
+) AS [r1] ON [a0].[RoleId] = [r1].[Id]
+ORDER BY [r1].[Name], [r1].[Id] (6438bdd5)
+2017-07-13T11:17:02.4433229+08:00 0HL69JKK7PD7I [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN (
+    SELECT DISTINCT TOP(1) [u].[Id]
+    FROM [AspNetUsers] AS [u]
+    WHERE [u].[Id] = @__userId_0
+    ORDER BY [u].[Id]
+) AS [u0] ON [a].[UserId] = [u0].[Id]
+ORDER BY [u0].[Id] (6438bdd5)
+2017-07-13T11:17:02.4589773+08:00 0HL69JKK7PD7J [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[RoleId]
+FROM [AspNetRoleClaims] AS [a]
+INNER JOIN (
+    SELECT DISTINCT [r].[Name], [r].[Id]
+    FROM [AspNetRoles] AS [r]
+) AS [r0] ON [a].[RoleId] = [r0].[Id]
+ORDER BY [r0].[Name], [r0].[Id] (6438bdd5)
+2017-07-13T11:17:02.5839839+08:00 0HL69JKK7PD7I [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[Id] IN (N'0933b5e0-872e-4b69-afbe-728d15efec11') (6438bdd5)
+2017-07-13T11:17:02.6354121+08:00 0HL69JKK7PD7I [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:17:02.6364112+08:00 0HL69JKK7PD7J [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:17:02.6706611+08:00 0HL69JKK7PD7I [INF] Executed action "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" in 806.7342ms (afa2e885)
+2017-07-13T11:17:02.6793946+08:00 0HL69JKK7PD7I [INF] Request finished in 922.0612ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:17:02.6803947+08:00 0HL69JKK7PD7J [INF] Executed action "EA.WebApp.Controllers.AccountController.GetRoles (EA.WebApp)" in 809.9239ms (afa2e885)
+2017-07-13T11:17:02.6808876+08:00 0HL69JKK7PD7J [INF] Request finished in 906.4444ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:17:06.3467798+08:00 0HL69JKK7PD7K [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me   (e5be5b71)
+2017-07-13T11:17:06.3477984+08:00 0HL69JKK7PD7K [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:17:06.3477984+08:00 0HL69JKK7PD7K [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:06.3668429+08:00 0HL69JKK7PD7L [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/roles   (e5be5b71)
+2017-07-13T11:17:06.3678435+08:00 0HL69JKK7PD7K [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:17:06.3998466+08:00 0HL69JKK7PD7L [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:17:06.4048470+08:00 0HL69JKK7PD7K [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:17:06.4118026+08:00 0HL69JKK7PD7K [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:06.4143797+08:00 0HL69JKK7PD7L [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:06.4148800+08:00 0HL69JKK7PD7K [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:06.4188803+08:00 0HL69JKK7PD7L [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:17:06.4204471+08:00 0HL69JKK7PD7L [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetRoles (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:17:06.4214477+08:00 0HL69JKK7PD7K [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[Id] = @__userId_0
+ORDER BY [u].[Id] (6438bdd5)
+2017-07-13T11:17:06.4274198+08:00 0HL69JKK7PD7L [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+ORDER BY [r].[Name], [r].[Id] (6438bdd5)
+2017-07-13T11:17:06.4284507+08:00 0HL69JKK7PD7K [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN (
+    SELECT DISTINCT TOP(1) [u].[Id]
+    FROM [AspNetUsers] AS [u]
+    WHERE [u].[Id] = @__userId_0
+    ORDER BY [u].[Id]
+) AS [u0] ON [a].[UserId] = [u0].[Id]
+ORDER BY [u0].[Id] (6438bdd5)
+2017-07-13T11:17:06.4314221+08:00 0HL69JKK7PD7L [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a0].[UserId], [a0].[RoleId]
+FROM [AspNetUserRoles] AS [a0]
+INNER JOIN (
+    SELECT DISTINCT [r].[Name], [r].[Id]
+    FROM [AspNetRoles] AS [r]
+) AS [r1] ON [a0].[RoleId] = [r1].[Id]
+ORDER BY [r1].[Name], [r1].[Id] (6438bdd5)
+2017-07-13T11:17:06.4374485+08:00 0HL69JKK7PD7K [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[Id] IN (N'0933b5e0-872e-4b69-afbe-728d15efec11') (6438bdd5)
+2017-07-13T11:17:06.4374485+08:00 0HL69JKK7PD7L [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[RoleId]
+FROM [AspNetRoleClaims] AS [a]
+INNER JOIN (
+    SELECT DISTINCT [r].[Name], [r].[Id]
+    FROM [AspNetRoles] AS [r]
+) AS [r0] ON [a].[RoleId] = [r0].[Id]
+ORDER BY [r0].[Name], [r0].[Id] (6438bdd5)
+2017-07-13T11:17:06.4384491+08:00 0HL69JKK7PD7K [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:17:06.4394496+08:00 0HL69JKK7PD7K [INF] Executed action "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" in 91.2008ms (afa2e885)
+2017-07-13T11:17:06.4414508+08:00 0HL69JKK7PD7L [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:17:06.4444505+08:00 0HL69JKK7PD7L [INF] Executed action "EA.WebApp.Controllers.AccountController.GetRoles (EA.WebApp)" in 40.8475ms (afa2e885)
+2017-07-13T11:17:06.4454506+08:00 0HL69JKK7PD7K [INF] Request finished in 105.4855ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:17:06.4494519+08:00 0HL69JKK7PD7L [INF] Request finished in 111.4065ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:29:52.1166670+08:00 0HL69JKK7PD7M [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me   (e5be5b71)
+2017-07-13T11:29:52.1286672+08:00 0HL69JKK7PD7N [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/roles   (e5be5b71)
+2017-07-13T11:29:52.1296688+08:00 0HL69JKK7PD7M [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:29:52.1356393+08:00 0HL69JKK7PD7N [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:29:52.1356393+08:00 0HL69JKK7PD7M [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:29:52.1366672+08:00 0HL69JKK7PD7N [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:29:52.1366672+08:00 0HL69JKK7PD7M [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:29:52.1366672+08:00 0HL69JKK7PD7N [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:29:52.1376394+08:00 0HL69JKK7PD7N [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetRoles (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:29:59.8170844+08:00 0HL69JKK7PD7N [INF] Executed DbCommand (155ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+ORDER BY [r].[Name], [r].[Id] (6438bdd5)
+2017-07-13T11:29:59.8200841+08:00 0HL69JKK7PD7M [INF] Executed DbCommand (177ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:29:59.8220852+08:00 0HL69JKK7PD7M [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:29:59.8230233+08:00 0HL69JKK7PD7M [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:29:59.8310565+08:00 0HL69JKK7PD7M [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[Id] = @__userId_0
+ORDER BY [u].[Id] (6438bdd5)
+2017-07-13T11:29:59.8920626+08:00 0HL69JKK7PD7M [INF] Executed DbCommand (60ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN (
+    SELECT DISTINCT TOP(1) [u].[Id]
+    FROM [AspNetUsers] AS [u]
+    WHERE [u].[Id] = @__userId_0
+    ORDER BY [u].[Id]
+) AS [u0] ON [a].[UserId] = [u0].[Id]
+ORDER BY [u0].[Id] (6438bdd5)
+2017-07-13T11:29:59.8981431+08:00 0HL69JKK7PD7M [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[Id] IN (N'0933b5e0-872e-4b69-afbe-728d15efec11') (6438bdd5)
+2017-07-13T11:29:59.8990636+08:00 0HL69JKK7PD7M [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:29:59.9030960+08:00 0HL69JKK7PD7M [INF] Executed action "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" in 7769.0617ms (afa2e885)
+2017-07-13T11:29:59.9090935+08:00 0HL69JKK7PD7M [INF] Request finished in 7816.0583ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:29:59.9170930+08:00 0HL69JKK7PD7N [INF] Executed DbCommand (98ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a0].[UserId], [a0].[RoleId]
+FROM [AspNetUserRoles] AS [a0]
+INNER JOIN (
+    SELECT DISTINCT [r].[Name], [r].[Id]
+    FROM [AspNetRoles] AS [r]
+) AS [r1] ON [a0].[RoleId] = [r1].[Id]
+ORDER BY [r1].[Name], [r1].[Id] (6438bdd5)
+2017-07-13T11:29:59.9301246+08:00 0HL69JKK7PD7N [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[RoleId]
+FROM [AspNetRoleClaims] AS [a]
+INNER JOIN (
+    SELECT DISTINCT [r].[Name], [r].[Id]
+    FROM [AspNetRoles] AS [r]
+) AS [r0] ON [a].[RoleId] = [r0].[Id]
+ORDER BY [r0].[Name], [r0].[Id] (6438bdd5)
+2017-07-13T11:29:59.9336250+08:00 0HL69JKK7PD7N [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:29:59.9360981+08:00 0HL69JKK7PD7N [INF] Executed action "EA.WebApp.Controllers.AccountController.GetRoles (EA.WebApp)" in 7797.8972ms (afa2e885)
+2017-07-13T11:29:59.9366262+08:00 0HL69JKK7PD7N [INF] Request finished in 7826.2501ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:30:12.6529005+08:00 0HL69JKK7PD7O [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me/preferences   (e5be5b71)
+2017-07-13T11:30:12.6539284+08:00 0HL69JKK7PD7O [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:30:12.6569301+08:00 0HL69JKK7PD7O [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:30:12.6579306+08:00 0HL69JKK7PD7O [INF] Executing action method "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:30:12.6869319+08:00 0HL69JKK7PD7O [INF] Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Configuration], [e].[Email], [e].[EmailConfirmed], [e].[FullName], [e].[IsEnabled], [e].[JobTitle], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0 (6438bdd5)
+2017-07-13T11:30:12.6919322+08:00 0HL69JKK7PD7O [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:30:12.6939323+08:00 0HL69JKK7PD7O [INF] Executed action "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" in 36.9553ms (afa2e885)
+2017-07-13T11:30:12.6989048+08:00 0HL69JKK7PD7O [INF] Request finished in 45.9785ms 204  (15c52c40)
+2017-07-13T11:30:13.7796127+08:00 0HL69JKK7PD7P [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me/preferences   (e5be5b71)
+2017-07-13T11:30:13.7856121+08:00 0HL69JKK7PD7P [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:30:13.7866258+08:00 0HL69JKK7PD7P [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:30:13.7876107+08:00 0HL69JKK7PD7P [INF] Executing action method "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:30:13.7946136+08:00 0HL69JKK7PD7P [INF] Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Configuration], [e].[Email], [e].[EmailConfirmed], [e].[FullName], [e].[IsEnabled], [e].[JobTitle], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0 (6438bdd5)
+2017-07-13T11:30:13.7966137+08:00 0HL69JKK7PD7P [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:30:13.7966137+08:00 0HL69JKK7PD7P [INF] Executed action "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" in 10.3974ms (afa2e885)
+2017-07-13T11:30:13.7976143+08:00 0HL69JKK7PD7P [INF] Request finished in 22.6453ms 204  (15c52c40)
+2017-07-13T11:30:14.7338659+08:00 0HL69JKK7PD7Q [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me/preferences   (e5be5b71)
+2017-07-13T11:30:14.7348547+08:00 0HL69JKK7PD7Q [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:30:14.7358660+08:00 0HL69JKK7PD7Q [INF] Authorization was successful for user: "admin". (d7eb274a)
+2017-07-13T11:30:14.7368661+08:00 0HL69JKK7PD7Q [INF] Executing action method "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:30:14.7448685+08:00 0HL69JKK7PD7Q [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Configuration], [e].[Email], [e].[EmailConfirmed], [e].[FullName], [e].[IsEnabled], [e].[JobTitle], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0 (6438bdd5)
+2017-07-13T11:30:14.7558692+08:00 0HL69JKK7PD7Q [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:30:14.7568683+08:00 0HL69JKK7PD7Q [INF] Executed action "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" in 21.3839ms (afa2e885)
+2017-07-13T11:30:14.7578683+08:00 0HL69JKK7PD7Q [INF] Request finished in 25.5472ms 204  (15c52c40)
+2017-07-13T11:31:08.1970349+08:00 0HL69JKK7PD7R [INF] Request starting HTTP/1.1 GET http://localhost:5000/login   (e5be5b71)
+2017-07-13T11:31:08.1980628+08:00 0HL69JKK7PD7R [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:31:08.2170644+08:00 0HL69JKK7PD7R [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:31:08.2290368+08:00 0HL69JKK7PD7R [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:31:08.2320663+08:00 0HL69JKK7PD7R [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 14.7819ms (afa2e885)
+2017-07-13T11:31:08.2340376+08:00 0HL69JKK7PD7R [INF] Request finished in 38.2583ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:31:08.3250480+08:00 0HL69JKK7PD7S [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.css?v=KmyyFY1Yy5FUtGZXb8gtv4yT0hNXpk4D4_5Cx1n6iPQ   (e5be5b71)
+2017-07-13T11:31:08.3270760+08:00 0HL69JKK7PD7T [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.js?v=rqAG_rk8MejUId1XgTiyQIiNN6_mH3eJFhpvseTi2lA   (e5be5b71)
+2017-07-13T11:31:08.3310753+08:00 0HL69JKK7PD7U [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js?v=cxQdSenCvXV1SHw1tjzMYcPGBKoX8r4rHdXdVjo852k   (e5be5b71)
+2017-07-13T11:31:08.3460762+08:00 0HL69JKK7PD7T [INF] The file "/dist/vendor.js" was not modified (f1f8d725)
+2017-07-13T11:31:08.3490798+08:00 0HL69JKK7PD7U [INF] The file "/dist/main-client.js" was not modified (f1f8d725)
+2017-07-13T11:31:08.3640788+08:00 0HL69JKK7PD7S [INF] The file "/dist/vendor.css" was not modified (f1f8d725)
+2017-07-13T11:31:08.3750794+08:00 0HL69JKK7PD7T [INF] Request finished in 61.1601ms 304 application/javascript (15c52c40)
+2017-07-13T11:31:08.3750794+08:00 0HL69JKK7PD7U [INF] Request finished in 60.5763ms 304 application/javascript (15c52c40)
+2017-07-13T11:31:08.3780493+08:00 0HL69JKK7PD7S [INF] Request finished in 84.0551ms 304 text/css (15c52c40)
+2017-07-13T11:31:13.7824995+08:00 0HL69JKK7PD7V [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico   (e5be5b71)
+2017-07-13T11:31:13.7835015+08:00 0HL69JKK7PD7V [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\favicon.ico"' (27b0a520)
+2017-07-13T11:31:13.7875306+08:00 0HL69JKK7PD7V [INF] Request finished in 4.8037ms 200 image/x-icon (15c52c40)
+2017-07-13T11:31:16.1146649+08:00 0HL69JKK7PD80 [INF] Request starting HTTP/1.1 GET http://localhost:5000/login   (e5be5b71)
+2017-07-13T11:31:16.1156655+08:00 0HL69JKK7PD80 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:31:16.1176372+08:00 0HL69JKK7PD80 [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:31:16.1176372+08:00 0HL69JKK7PD80 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:31:16.1306664+08:00 0HL69JKK7PD80 [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 2.5139ms (afa2e885)
+2017-07-13T11:31:16.2016746+08:00 0HL69JKK7PD80 [INF] Request finished in 21.8417ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:31:20.6193484+08:00 0HL69JKK7PD81 [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico   (e5be5b71)
+2017-07-13T11:31:20.6193484+08:00 0HL69JKK7PD81 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\favicon.ico"' (27b0a520)
+2017-07-13T11:31:20.6223481+08:00 0HL69JKK7PD81 [INF] Request finished in 3.3991ms 200 image/x-icon (15c52c40)
+2017-07-13T11:31:24.4562158+08:00 0HL69JKK7PD82 [INF] Request starting HTTP/1.1 GET http://localhost:5000/   (e5be5b71)
+2017-07-13T11:31:24.4562158+08:00 0HL69JKK7PD82 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:31:24.4572163+08:00 0HL69JKK7PD82 [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:31:24.4581870+08:00 0HL69JKK7PD82 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:31:24.4592164+08:00 0HL69JKK7PD82 [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 1.7865ms (afa2e885)
+2017-07-13T11:31:24.4602160+08:00 0HL69JKK7PD82 [INF] Request finished in 7.7774ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:32:25.0488334+08:00 0HL69JKK7PD83 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 156 (e5be5b71)
+2017-07-13T11:32:25.0768350+08:00 0HL69JKK7PD83 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:32:25.0798361+08:00 0HL69JKK7PD83 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"user@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}". (ebc01284)
+2017-07-13T11:32:25.0798361+08:00 0HL69JKK7PD83 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2017-07-13T11:32:25.0808352+08:00 0HL69JKK7PD83 [INF] The token request was successfully validated. (d7e51e65)
+2017-07-13T11:32:25.0808352+08:00 0HL69JKK7PD83 [DBG] The default token request handling was skipped from user code. (72afae05)
+2017-07-13T11:32:25.0818357+08:00 0HL69JKK7PD83 [INF] Executing action method "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" with arguments (["{
+  \"username\": \"user@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}"]) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:32:25.1198402+08:00 0HL69JKK7PD83 [INF] Executed DbCommand (15ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:32:25.2218483+08:00 0HL69JKK7PD83 [INF] Executed DbCommand (73ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0 (6438bdd5)
+2017-07-13T11:32:25.2658517+08:00 0HL69JKK7PD83 [INF] Executed DbCommand (37ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:32:25.2878538+08:00 0HL69JKK7PD83 [INF] Executed DbCommand (15ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0 (6438bdd5)
+2017-07-13T11:32:25.3168564+08:00 0HL69JKK7PD83 [INF] Executed DbCommand (26ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0 (6438bdd5)
+2017-07-13T11:32:25.3198292+08:00 0HL69JKK7PD83 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2017-07-13T11:32:25.3208581+08:00 0HL69JKK7PD83 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:32:25.3218576+08:00 0HL69JKK7PD83 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:32:25.3218576+08:00 0HL69JKK7PD83 [DBG] '"fullname"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:32:25.3218576+08:00 0HL69JKK7PD83 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:32:25.4708722+08:00 0HL69JKK7PD83 [INF] Executed DbCommand (131ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [OpenIddictTokens] ([Id], [ApplicationId], [AuthorizationId], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4); (6438bdd5)
+2017-07-13T11:32:25.4988727+08:00 0HL69JKK7PD83 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2017-07-13T11:32:25.5268757+08:00 0HL69JKK7PD83 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2017-07-13T11:32:25.6408800+08:00 0HL69JKK7PD83 [INF] AuthenticationScheme: "ASOS" signed in. (c66dd7e7)
+2017-07-13T11:32:25.6618885+08:00 0HL69JKK7PD83 [INF] Executed action "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" in 561.9315ms (afa2e885)
+2017-07-13T11:32:25.6678878+08:00 0HL69JKK7PD83 [INF] Request finished in 761.4049ms 200 application/json;charset=UTF-8 (15c52c40)
+2017-07-13T11:32:26.0439235+08:00 0HL69JKK7PD84 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/e10af218b941826ea360d7554688d721.png   (e5be5b71)
+2017-07-13T11:32:26.0449236+08:00 0HL69JKK7PD84 [INF] The file "/dist/e10af218b941826ea360d7554688d721.png" was not modified (f1f8d725)
+2017-07-13T11:32:26.0519235+08:00 0HL69JKK7PD84 [INF] Request finished in 1.9487ms 304 image/png (15c52c40)
+2017-07-13T11:32:57.6175016+08:00 0HL69JKK7PD85 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me   (e5be5b71)
+2017-07-13T11:32:57.6185011+08:00 0HL69JKK7PD85 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:32:57.6195017+08:00 0HL69JKK7PD85 [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:32:57.6195017+08:00 0HL69JKK7PD85 [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:32:57.6314755+08:00 0HL69JKK7PD85 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:32:57.6324741+08:00 0HL69JKK7PD85 [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:32:57.6345040+08:00 0HL69JKK7PD85 [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:32:57.6455046+08:00 0HL69JKK7PD85 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[Id] = @__userId_0
+ORDER BY [u].[Id] (6438bdd5)
+2017-07-13T11:32:57.6902862+08:00 0HL69JKK7PD85 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN (
+    SELECT DISTINCT TOP(1) [u].[Id]
+    FROM [AspNetUsers] AS [u]
+    WHERE [u].[Id] = @__userId_0
+    ORDER BY [u].[Id]
+) AS [u0] ON [a].[UserId] = [u0].[Id]
+ORDER BY [u0].[Id] (6438bdd5)
+2017-07-13T11:32:57.6944154+08:00 0HL69JKK7PD85 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[Id] IN (N'4e8c7cf8-fee1-49ab-baa0-33e188faa6ce') (6438bdd5)
+2017-07-13T11:32:57.6959157+08:00 0HL69JKK7PD85 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:32:57.6964165+08:00 0HL69JKK7PD85 [INF] Executed action "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" in 76.9968ms (afa2e885)
+2017-07-13T11:32:57.6989159+08:00 0HL69JKK7PD85 [INF] Request finished in 79.9485ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:33:07.7890581+08:00 0HL69JKK7PD86 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me/preferences   (e5be5b71)
+2017-07-13T11:33:07.7900586+08:00 0HL69JKK7PD86 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:33:07.7910269+08:00 0HL69JKK7PD86 [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:33:07.7920592+08:00 0HL69JKK7PD86 [INF] Executing action method "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:33:07.7970576+08:00 0HL69JKK7PD86 [INF] Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Configuration], [e].[Email], [e].[EmailConfirmed], [e].[FullName], [e].[IsEnabled], [e].[JobTitle], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0 (6438bdd5)
+2017-07-13T11:33:07.7990586+08:00 0HL69JKK7PD86 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:33:07.7990586+08:00 0HL69JKK7PD86 [INF] Executed action "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" in 8.3568ms (afa2e885)
+2017-07-13T11:33:07.8000592+08:00 0HL69JKK7PD86 [INF] Request finished in 19.6081ms 204  (15c52c40)
+2017-07-13T11:33:08.8658493+08:00 0HL69JKK7PD87 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me/preferences   (e5be5b71)
+2017-07-13T11:33:08.8698779+08:00 0HL69JKK7PD87 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:33:08.8708784+08:00 0HL69JKK7PD87 [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:33:08.8708784+08:00 0HL69JKK7PD87 [INF] Executing action method "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:33:08.8768773+08:00 0HL69JKK7PD87 [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Configuration], [e].[Email], [e].[EmailConfirmed], [e].[FullName], [e].[IsEnabled], [e].[JobTitle], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0 (6438bdd5)
+2017-07-13T11:33:08.8788779+08:00 0HL69JKK7PD87 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:33:08.8788779+08:00 0HL69JKK7PD87 [INF] Executed action "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" in 8.8194ms (afa2e885)
+2017-07-13T11:33:08.8878803+08:00 0HL69JKK7PD87 [INF] Request finished in 20.0585ms 204  (15c52c40)
+2017-07-13T11:33:09.3863516+08:00 0HL69JKK7PD88 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me/preferences   (e5be5b71)
+2017-07-13T11:33:09.3874123+08:00 0HL69JKK7PD88 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:33:09.3874123+08:00 0HL69JKK7PD88 [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:33:09.3884128+08:00 0HL69JKK7PD88 [INF] Executing action method "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:33:09.3964133+08:00 0HL69JKK7PD88 [INF] Executed DbCommand (5ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Configuration], [e].[Email], [e].[EmailConfirmed], [e].[FullName], [e].[IsEnabled], [e].[JobTitle], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0 (6438bdd5)
+2017-07-13T11:33:09.3974128+08:00 0HL69JKK7PD88 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:33:09.3984129+08:00 0HL69JKK7PD88 [INF] Executed action "EA.WebApp.Controllers.AccountController.UserPreferences (EA.WebApp)" in 10.2928ms (afa2e885)
+2017-07-13T11:33:09.3993856+08:00 0HL69JKK7PD88 [INF] Request finished in 12.6387ms 204  (15c52c40)
+2017-07-13T11:35:31.8416325+08:00 0HL69JKK7PD89 [INF] Request starting HTTP/1.1 GET http://localhost:5000/products   (e5be5b71)
+2017-07-13T11:35:31.8426321+08:00 0HL69JKK7PD89 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:35:31.8426321+08:00 0HL69JKK7PD89 [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:35:31.8436312+08:00 0HL69JKK7PD89 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:35:31.8446322+08:00 0HL69JKK7PD89 [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 1.3292ms (afa2e885)
+2017-07-13T11:35:31.8446322+08:00 0HL69JKK7PD89 [INF] Request finished in 51.3958ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:35:31.9256386+08:00 0HL69JKK7PD8A [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.css?v=KmyyFY1Yy5FUtGZXb8gtv4yT0hNXpk4D4_5Cx1n6iPQ   (e5be5b71)
+2017-07-13T11:35:31.9276382+08:00 0HL69JKK7PD8B [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.js?v=rqAG_rk8MejUId1XgTiyQIiNN6_mH3eJFhpvseTi2lA   (e5be5b71)
+2017-07-13T11:35:31.9276382+08:00 0HL69JKK7PD8C [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js?v=cxQdSenCvXV1SHw1tjzMYcPGBKoX8r4rHdXdVjo852k   (e5be5b71)
+2017-07-13T11:35:31.9286393+08:00 0HL69JKK7PD8B [INF] The file "/dist/vendor.js" was not modified (f1f8d725)
+2017-07-13T11:35:31.9336400+08:00 0HL69JKK7PD8A [INF] The file "/dist/vendor.css" was not modified (f1f8d725)
+2017-07-13T11:35:31.9346411+08:00 0HL69JKK7PD8A [INF] Request finished in 34.8097ms 304 text/css (15c52c40)
+2017-07-13T11:35:31.9415789+08:00 0HL69JKK7PD8B [INF] Request finished in 30.1316ms 304 application/javascript (15c52c40)
+2017-07-13T11:35:31.9426400+08:00 0HL69JKK7PD8C [INF] The file "/dist/main-client.js" was not modified (f1f8d725)
+2017-07-13T11:35:31.9436415+08:00 0HL69JKK7PD8C [INF] Request finished in 43.5759ms 304 application/javascript (15c52c40)
+2017-07-13T11:37:00.8534871+08:00 0HL69JKK7PD8D [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/e10af218b941826ea360d7554688d721.png   (e5be5b71)
+2017-07-13T11:37:00.8544882+08:00 0HL69JKK7PD8D [INF] The file "/dist/e10af218b941826ea360d7554688d721.png" was not modified (f1f8d725)
+2017-07-13T11:37:00.8554872+08:00 0HL69JKK7PD8D [INF] Request finished in 19.6863ms 304 image/png (15c52c40)
+2017-07-13T11:37:30.7765879+08:00 0HL69JKK7PD8E [INF] Request starting HTTP/1.1 GET http://localhost:5000/customers   (e5be5b71)
+2017-07-13T11:37:30.8855983+08:00 0HL69JKK7PD8E [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:37:30.9900090+08:00 0HL69JKK7PD8E [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:37:31.0060094+08:00 0HL69JKK7PD8E [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:37:31.0628909+08:00 0HL69JKK7PD8E [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 125.7312ms (afa2e885)
+2017-07-13T11:37:31.3139813+08:00 0HL69JKK7PD8E [INF] Request finished in 419.9307ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:37:50.4092176+08:00 0HL69JKK7PD8F [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/tryCatch.js.map   (e5be5b71)
+2017-07-13T11:37:50.4102176+08:00 0HL69JKK7PD8F [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:37:50.4162194+08:00 0HL69JKK7PD8G [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js.map   (e5be5b71)
+2017-07-13T11:37:50.4172185+08:00 0HL69JKK7PD8F [INF] Request finished in 11.9177ms 404  (15c52c40)
+2017-07-13T11:37:50.4182186+08:00 0HL69JKK7PD8G [INF] Sending file. Request path: '"/dist/main-client.js.map"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js.map"' (27b0a520)
+2017-07-13T11:37:50.7152480+08:00 0HL69JKK7PD8G [INF] Request finished in 288.2458ms 200 text/plain (15c52c40)
+2017-07-13T11:38:42.5606631+08:00 0HL69JKK7PD8H [INF] Request starting HTTP/1.1 GET http://localhost:5000/   (e5be5b71)
+2017-07-13T11:38:42.5616915+08:00 0HL69JKK7PD8H [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:38:42.5626915+08:00 0HL69JKK7PD8H [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:38:42.5636926+08:00 0HL69JKK7PD8H [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:38:42.5746937+08:00 0HL69JKK7PD8H [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 6.0861ms (afa2e885)
+2017-07-13T11:38:42.5746937+08:00 0HL69JKK7PD8H [INF] Request finished in 21.6477ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:38:42.6577002+08:00 0HL69JKK7PD8I [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.css?v=KmyyFY1Yy5FUtGZXb8gtv4yT0hNXpk4D4_5Cx1n6iPQ   (e5be5b71)
+2017-07-13T11:38:42.6637005+08:00 0HL69JKK7PD8I [INF] Sending file. Request path: '"/dist/vendor.css"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.css"' (27b0a520)
+2017-07-13T11:38:42.7547094+08:00 0HL69JKK7PD8J [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.js?v=rqAG_rk8MejUId1XgTiyQIiNN6_mH3eJFhpvseTi2lA   (e5be5b71)
+2017-07-13T11:38:42.7927134+08:00 0HL69JKK7PD8J [INF] Sending file. Request path: '"/dist/vendor.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.js"' (27b0a520)
+2017-07-13T11:38:42.8539244+08:00 0HL69JKK7PD8K [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js?v=cxQdSenCvXV1SHw1tjzMYcPGBKoX8r4rHdXdVjo852k   (e5be5b71)
+2017-07-13T11:38:42.8544906+08:00 0HL69JKK7PD8I [INF] Request finished in 174.0083ms 200 text/css (15c52c40)
+2017-07-13T11:38:42.8549909+08:00 0HL69JKK7PD8K [INF] Sending file. Request path: '"/dist/main-client.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js"' (27b0a520)
+2017-07-13T11:38:42.8786961+08:00 0HL69JKK7PD8K [INF] Request finished in 238.4933ms 200 application/javascript (15c52c40)
+2017-07-13T11:38:43.5481851+08:00 0HL69JKK7PD8J [INF] Request finished in 904.924ms 200 application/javascript (15c52c40)
+2017-07-13T11:38:49.6916263+08:00 0HL69JKK7PD8L [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/tryCatch.js.map   (e5be5b71)
+2017-07-13T11:38:49.6925985+08:00 0HL69JKK7PD8M [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js.map   (e5be5b71)
+2017-07-13T11:38:49.6935981+08:00 0HL69JKK7PD8M [INF] Sending file. Request path: '"/dist/main-client.js.map"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js.map"' (27b0a520)
+2017-07-13T11:38:49.8266395+08:00 0HL69JKK7PD8L [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:38:49.8266395+08:00 0HL69JKK7PD8L [INF] Request finished in 200.277ms 404  (15c52c40)
+2017-07-13T11:38:50.1666694+08:00 0HL69JKK7PD8M [INF] Request finished in 533.3832ms 200 text/plain (15c52c40)
+2017-07-13T11:39:05.1402825+08:00 0HL69JKK7PD8N [INF] Request starting HTTP/1.1 GET http://localhost:5000/login   (e5be5b71)
+2017-07-13T11:39:05.1413104+08:00 0HL69JKK7PD8N [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:39:05.1422489+08:00 0HL69JKK7PD8N [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:39:05.1433100+08:00 0HL69JKK7PD8N [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:39:05.1442817+08:00 0HL69JKK7PD8N [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 1.9316ms (afa2e885)
+2017-07-13T11:39:05.1552833+08:00 0HL69JKK7PD8N [INF] Request finished in 8.902ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:39:05.2173155+08:00 0HL69JKK7PD8O [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.css?v=KmyyFY1Yy5FUtGZXb8gtv4yT0hNXpk4D4_5Cx1n6iPQ   (e5be5b71)
+2017-07-13T11:39:05.2183171+08:00 0HL69JKK7PD8O [INF] Sending file. Request path: '"/dist/vendor.css"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.css"' (27b0a520)
+2017-07-13T11:39:05.2673212+08:00 0HL69JKK7PD8O [INF] Request finished in 55.2381ms 200 text/css (15c52c40)
+2017-07-13T11:39:05.3373270+08:00 0HL69JKK7PD8P [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js?v=cxQdSenCvXV1SHw1tjzMYcPGBKoX8r4rHdXdVjo852k   (e5be5b71)
+2017-07-13T11:39:05.3433283+08:00 0HL69JKK7PD8Q [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.js?v=rqAG_rk8MejUId1XgTiyQIiNN6_mH3eJFhpvseTi2lA   (e5be5b71)
+2017-07-13T11:39:05.3453308+08:00 0HL69JKK7PD8P [INF] Sending file. Request path: '"/dist/main-client.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js"' (27b0a520)
+2017-07-13T11:39:05.3888647+08:00 0HL69JKK7PD8Q [INF] Sending file. Request path: '"/dist/vendor.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.js"' (27b0a520)
+2017-07-13T11:39:05.4053385+08:00 0HL69JKK7PD8P [INF] Request finished in 201.4871ms 200 application/javascript (15c52c40)
+2017-07-13T11:39:06.0434658+08:00 0HL69JKK7PD8Q [INF] Request finished in 837.1326ms 200 application/javascript (15c52c40)
+2017-07-13T11:39:11.4945691+08:00 0HL69JKK7PD8R [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/tryCatch.js.map   (e5be5b71)
+2017-07-13T11:39:11.4966010+08:00 0HL69JKK7PD8R [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:39:11.4976015+08:00 0HL69JKK7PD8R [INF] Request finished in 5.8609ms 404  (15c52c40)
+2017-07-13T11:39:11.5056010+08:00 0HL69JKK7PD8S [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js.map   (e5be5b71)
+2017-07-13T11:39:11.5056010+08:00 0HL69JKK7PD8S [INF] Sending file. Request path: '"/dist/main-client.js.map"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js.map"' (27b0a520)
+2017-07-13T11:39:11.7203670+08:00 0HL69JKK7PD8S [INF] Request finished in 213.4908ms 200 text/plain (15c52c40)
+2017-07-13T11:39:30.2611103+08:00 0HL69JKK7PD8T [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 156 (e5be5b71)
+2017-07-13T11:39:30.2621104+08:00 0HL69JKK7PD8T [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:39:30.2630962+08:00 0HL69JKK7PD8T [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"user@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}". (ebc01284)
+2017-07-13T11:39:30.2641105+08:00 0HL69JKK7PD8T [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2017-07-13T11:39:30.2641105+08:00 0HL69JKK7PD8T [INF] The token request was successfully validated. (d7e51e65)
+2017-07-13T11:39:30.2650490+08:00 0HL69JKK7PD8T [DBG] The default token request handling was skipped from user code. (72afae05)
+2017-07-13T11:39:30.2660818+08:00 0HL69JKK7PD8T [INF] Executing action method "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" with arguments (["{
+  \"username\": \"user@ebenmonney.com\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email profile offline_access roles\",
+  \"resource\": \"http://localhost:5000\"
+}"]) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:39:30.9736041+08:00 0HL69JKK7PD8T [INF] Executed DbCommand (165ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0 (6438bdd5)
+2017-07-13T11:39:31.0505829+08:00 0HL69JKK7PD8T [INF] Executed DbCommand (54ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0 (6438bdd5)
+2017-07-13T11:39:31.0706123+08:00 0HL69JKK7PD8T [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0 (6438bdd5)
+2017-07-13T11:39:31.1116175+08:00 0HL69JKK7PD8T [INF] Executed DbCommand (31ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0 (6438bdd5)
+2017-07-13T11:39:31.1286175+08:00 0HL69JKK7PD8T [INF] Executed DbCommand (13ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0 (6438bdd5)
+2017-07-13T11:39:31.1446198+08:00 0HL69JKK7PD8T [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2017-07-13T11:39:31.1456199+08:00 0HL69JKK7PD8T [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:39:31.1516202+08:00 0HL69JKK7PD8T [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:39:31.1526198+08:00 0HL69JKK7PD8T [DBG] '"fullname"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:39:31.1536203+08:00 0HL69JKK7PD8T [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2017-07-13T11:39:31.2156271+08:00 0HL69JKK7PD8T [INF] Executed DbCommand (52ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [OpenIddictTokens] ([Id], [ApplicationId], [AuthorizationId], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4); (6438bdd5)
+2017-07-13T11:39:31.2195975+08:00 0HL69JKK7PD8T [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2017-07-13T11:39:31.2206259+08:00 0HL69JKK7PD8T [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2017-07-13T11:39:31.2206259+08:00 0HL69JKK7PD8T [INF] AuthenticationScheme: "ASOS" signed in. (c66dd7e7)
+2017-07-13T11:39:31.2215976+08:00 0HL69JKK7PD8T [INF] Executed action "EA.WebApp.Controllers.AuthorizationController.Exchange (EA.WebApp)" in 956.2452ms (afa2e885)
+2017-07-13T11:39:31.2226260+08:00 0HL69JKK7PD8T [INF] Request finished in 961.9546ms 200 application/json;charset=UTF-8 (15c52c40)
+2017-07-13T11:39:32.1122722+08:00 0HL69JKK7PD8U [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/e10af218b941826ea360d7554688d721.png   (e5be5b71)
+2017-07-13T11:39:32.2458027+08:00 0HL69JKK7PD8U [INF] Sending file. Request path: '"/dist/e10af218b941826ea360d7554688d721.png"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\e10af218b941826ea360d7554688d721.png"' (27b0a520)
+2017-07-13T11:39:32.3952075+08:00 0HL69JKK7PD8U [INF] Request finished in 436.7059ms 200 image/png (15c52c40)
+2017-07-13T11:39:35.4073865+08:00 0HL69JKK7PD8V [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/account/users/me   (e5be5b71)
+2017-07-13T11:39:35.4093895+08:00 0HL69JKK7PD8V [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-07-13T11:39:35.4104175+08:00 0HL69JKK7PD8V [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:39:35.4124171+08:00 0HL69JKK7PD8V [INF] Executing action method "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:39:35.4254188+08:00 0HL69JKK7PD8V [INF] Executed DbCommand (10ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0 (6438bdd5)
+2017-07-13T11:39:35.4254188+08:00 0HL69JKK7PD8V [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:39:35.4274189+08:00 0HL69JKK7PD8V [INF] Authorization was successful for user: "user". (d7eb274a)
+2017-07-13T11:39:35.4374209+08:00 0HL69JKK7PD8V [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Configuration], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[JobTitle], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[Id] = @__userId_0
+ORDER BY [u].[Id] (6438bdd5)
+2017-07-13T11:39:35.4434212+08:00 0HL69JKK7PD8V [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN (
+    SELECT DISTINCT TOP(1) [u].[Id]
+    FROM [AspNetUsers] AS [u]
+    WHERE [u].[Id] = @__userId_0
+    ORDER BY [u].[Id]
+) AS [u0] ON [a].[UserId] = [u0].[Id]
+ORDER BY [u0].[Id] (6438bdd5)
+2017-07-13T11:39:35.5574020+08:00 0HL69JKK7PD8V [INF] Executed DbCommand (85ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[Id] IN (N'4e8c7cf8-fee1-49ab-baa0-33e188faa6ce') (6438bdd5)
+2017-07-13T11:39:35.5714316+08:00 0HL69JKK7PD8V [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-07-13T11:39:35.6109292+08:00 0HL69JKK7PD8V [INF] Executed action "EA.WebApp.Controllers.AccountController.GetCurrentUser (EA.WebApp)" in 161.8184ms (afa2e885)
+2017-07-13T11:39:35.6259300+08:00 0HL69JKK7PD8V [INF] Request finished in 204.9796ms 200 application/json; charset=utf-8 (15c52c40)
+2017-07-13T11:40:06.7657764+08:00 0HL69JKK7PD90 [INF] Request starting HTTP/1.1 GET http://localhost:5000/customers   (e5be5b71)
+2017-07-13T11:40:06.7657764+08:00 0HL69JKK7PD90 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:40:06.7667745+08:00 0HL69JKK7PD90 [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:40:06.7797459+08:00 0HL69JKK7PD90 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:40:06.7807753+08:00 0HL69JKK7PD90 [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 14.2191ms (afa2e885)
+2017-07-13T11:40:06.7817753+08:00 0HL69JKK7PD90 [INF] Request finished in 17.5187ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:40:06.8757824+08:00 0HL69JKK7PD91 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.css?v=KmyyFY1Yy5FUtGZXb8gtv4yT0hNXpk4D4_5Cx1n6iPQ   (e5be5b71)
+2017-07-13T11:40:06.8767830+08:00 0HL69JKK7PD91 [INF] Sending file. Request path: '"/dist/vendor.css"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.css"' (27b0a520)
+2017-07-13T11:40:06.9407611+08:00 0HL69JKK7PD92 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js?v=cxQdSenCvXV1SHw1tjzMYcPGBKoX8r4rHdXdVjo852k   (e5be5b71)
+2017-07-13T11:40:06.9569491+08:00 0HL69JKK7PD92 [INF] Sending file. Request path: '"/dist/main-client.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js"' (27b0a520)
+2017-07-13T11:40:06.9800837+08:00 0HL69JKK7PD93 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.js?v=rqAG_rk8MejUId1XgTiyQIiNN6_mH3eJFhpvseTi2lA   (e5be5b71)
+2017-07-13T11:40:06.9920829+08:00 0HL69JKK7PD93 [INF] Sending file. Request path: '"/dist/vendor.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.js"' (27b0a520)
+2017-07-13T11:40:07.0005836+08:00 0HL69JKK7PD91 [INF] Request finished in 124.3301ms 200 text/css (15c52c40)
+2017-07-13T11:40:07.0190927+08:00 0HL69JKK7PD92 [INF] Request finished in 171.2974ms 200 application/javascript (15c52c40)
+2017-07-13T11:40:07.7387153+08:00 0HL69JKK7PD93 [INF] Request finished in 905.1986ms 200 application/javascript (15c52c40)
+2017-07-13T11:40:13.6034915+08:00 0HL69JKK7PD94 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/tryCatch.js.map   (e5be5b71)
+2017-07-13T11:40:13.6045248+08:00 0HL69JKK7PD94 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:40:13.6085240+08:00 0HL69JKK7PD94 [INF] Request finished in 13.9651ms 404  (15c52c40)
+2017-07-13T11:40:13.6174630+08:00 0HL69JKK7PD95 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js.map   (e5be5b71)
+2017-07-13T11:40:13.6305252+08:00 0HL69JKK7PD95 [INF] Sending file. Request path: '"/dist/main-client.js.map"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js.map"' (27b0a520)
+2017-07-13T11:40:14.1040138+08:00 0HL69JKK7PD95 [INF] Request finished in 491.7809ms 200 text/plain (15c52c40)
+2017-07-13T11:42:19.4521672+08:00 0HL69JKK7PD96 [INF] Request starting HTTP/1.1 GET http://localhost:5000/   (e5be5b71)
+2017-07-13T11:42:19.4521672+08:00 0HL69JKK7PD96 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:42:19.4531946+08:00 0HL69JKK7PD96 [INF] Executing action method "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-13T11:42:19.4541946+08:00 0HL69JKK7PD96 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-13T11:42:19.4551952+08:00 0HL69JKK7PD96 [INF] Executed action "EA.WebApp.Controllers.HomeController.Index (EA.WebApp)" in 2.1637ms (afa2e885)
+2017-07-13T11:42:19.4561943+08:00 0HL69JKK7PD96 [INF] Request finished in 4.6376ms 200 text/html; charset=utf-8 (15c52c40)
+2017-07-13T11:42:19.5420084+08:00 0HL69JKK7PD97 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.css?v=KmyyFY1Yy5FUtGZXb8gtv4yT0hNXpk4D4_5Cx1n6iPQ   (e5be5b71)
+2017-07-13T11:42:19.5560092+08:00 0HL69JKK7PD98 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/vendor.js?v=rqAG_rk8MejUId1XgTiyQIiNN6_mH3eJFhpvseTi2lA   (e5be5b71)
+2017-07-13T11:42:19.5569492+08:00 0HL69JKK7PD98 [INF] Sending file. Request path: '"/dist/vendor.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.js"' (27b0a520)
+2017-07-13T11:42:19.5680089+08:00 0HL69JKK7PD97 [INF] Sending file. Request path: '"/dist/vendor.css"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\vendor.css"' (27b0a520)
+2017-07-13T11:42:19.6130128+08:00 0HL69JKK7PD99 [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js?v=cxQdSenCvXV1SHw1tjzMYcPGBKoX8r4rHdXdVjo852k   (e5be5b71)
+2017-07-13T11:42:19.6150139+08:00 0HL69JKK7PD99 [INF] Sending file. Request path: '"/dist/main-client.js"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js"' (27b0a520)
+2017-07-13T11:42:19.6830816+08:00 0HL69JKK7PD97 [INF] Request finished in 142.4047ms 200 text/css (15c52c40)
+2017-07-13T11:42:19.7590872+08:00 0HL69JKK7PD99 [INF] Request finished in 238.956ms 200 application/javascript (15c52c40)
+2017-07-13T11:42:20.2251298+08:00 0HL69JKK7PD98 [INF] Request finished in 701.8711ms 200 application/javascript (15c52c40)
+2017-07-13T11:42:25.3541862+08:00 0HL69JKK7PD9A [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/tryCatch.js.map   (e5be5b71)
+2017-07-13T11:42:25.3551575+08:00 0HL69JKK7PD9A [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-07-13T11:42:25.3601856+08:00 0HL69JKK7PD9A [INF] Request finished in 3.0098ms 404  (15c52c40)
+2017-07-13T11:42:25.3671865+08:00 0HL69JKK7PD9B [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/main-client.js.map   (e5be5b71)
+2017-07-13T11:42:25.3681582+08:00 0HL69JKK7PD9B [INF] Sending file. Request path: '"/dist/main-client.js.map"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\main-client.js.map"' (27b0a520)
+2017-07-13T11:42:25.5705312+08:00 0HL69JKK7PD9B [INF] Request finished in 209.457ms 200 text/plain (15c52c40)
+2017-07-13T11:42:25.8915605+08:00 0HL69JKK7PD9C [INF] Request starting HTTP/1.1 GET http://localhost:5000/dist/e10af218b941826ea360d7554688d721.png   (e5be5b71)
+2017-07-13T11:42:25.8935616+08:00 0HL69JKK7PD9C [INF] Sending file. Request path: '"/dist/e10af218b941826ea360d7554688d721.png"'. Physical path: '"C:\WorkSpace\aspdotnetcore\EA\EA.WebApp\EA.WebApp\wwwroot\dist\e10af218b941826ea360d7554688d721.png"' (27b0a520)
+2017-07-13T11:42:25.8995619+08:00 0HL69JKK7PD9C [INF] Request finished in 7.4974ms 200 image/png (15c52c40)
